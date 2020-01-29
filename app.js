@@ -48,7 +48,7 @@ var Schema = mongoose.Schema;
 
 var LupanSchema = new Schema({
   level: {
-    type: Int,
+    type: Number,
   },
   race: {
     type: String,
