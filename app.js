@@ -9,6 +9,7 @@ const app = express();
  * Connects to a MongoDB defined in the .env file.
  * @function createDatabaseConnection
  * @return {Promise}
+ *
  */
 const createDatabaseConnection = () => {
   const dbName = process.env.MONGO_DATABASE_NAME;
@@ -43,4 +44,16 @@ var LupanSchema = new Schema({
     type: String,
     enum: ["Big", "Med", "Small"]
   }
+});
+
+// Routing
+
+// 404
+app.use(function(req, res, next) {
+  return res.status(404).send({ message: 'Route'+req.url+' Not found.' });
+});
+
+// 500 - Any server error
+app.use(function(err, req, res, next) {
+  return res.status(500).send({ error: err });
 });
